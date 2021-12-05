@@ -1,0 +1,22 @@
+Input Files Path : ./benchmarks/FB15K237/
+The toolkit is importing datasets.
+The total of relations is 237.
+The total of entities is 14541.
+The total of train triples is 272115.
+Input Files Path : ./benchmarks/FB15K237/
+The total of test triples is 20466.
+The total of valid triples is 17535.
+Finish initializing...
+Epoch 9 | loss: 7.647109: 100%|████████████████████████████████████████████████████| 10/10 [42:06<00:00, 252.65s/it]
+100%|█████████████████████████████████████████████████████████████████████████| 20466/20466 [13:38<00:00, 25.00it/s]
+no type constraint results:
+metric:                  MRR             MR              hit@10          hit@3           hit@1
+l(raw):                  0.079597        731.317871      0.185674        0.078618        0.028291
+r(raw):                  0.229042        260.691681      0.414590        0.255986        0.134613
+averaged(raw):           0.154319        496.004761      0.300132        0.167302        0.081452
+
+l(filter):               0.152760        500.532990      0.299668        0.170038        0.079840
+r(filter):               0.332612        238.444931      0.535327        0.387472        0.223102
+averaged(filter):        0.242686        369.488953      0.417497        0.278755        0.151471
+0.417497
+0.41749733686447144
