@@ -28,7 +28,7 @@ transe = TransE(
 	p_norm = 1, 
 	norm_flag = True)
 
-transe.load_checkpoint('./checkpoint/transe.ckpt')
+# transe.load_checkpoint('./checkpoint/transe.ckpt')
 
 # define the loss function
 model = NegativeSampling(
@@ -41,14 +41,14 @@ model = NegativeSampling(
 if not os.path.exists('./checkpoint'):
 	os.mkdir("checkpoint")
 
-# # train the model
+# train the model
 # trainer = Trainer(model = model, data_loader = train_dataloader, train_times = 10, alpha = 1.0, use_gpu = False)
 # trainer.run()
-# transe.save_checkpoint('./checkpoint/transe-1.ckpt')
+# transe.save_checkpoint('./checkpoint/transe-novalid.ckpt')
 
 # test the model
-transe.load_checkpoint('./checkpoint/transe-1.ckpt')
+transe.load_checkpoint('./checkpoint/transe-novalid.ckpt')
 tester = Tester(model = transe, data_loader = test_dataloader, use_gpu = False)
 # tester.run_link_prediction(type_constrain = False)
 # tester.getHit5()
-tester.getHit5Cpp()
+tester.getHitXCpp(10)

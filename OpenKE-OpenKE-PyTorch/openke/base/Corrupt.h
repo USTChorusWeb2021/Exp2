@@ -164,8 +164,8 @@ INT corrupt_rel(INT id, INT h, INT t, INT r, bool p = false, bool filter_flag = 
 
 
 bool _find(INT h, INT t, INT r) {
-    INT lef = 0;
-    INT rig = tripleTotal - 1;
+    INT lef = testTotal;
+    INT rig = testTotal + trainTotal - 1;
     INT mid;
     while (lef + 1 < rig) {
         INT mid = (lef + rig) >> 1;

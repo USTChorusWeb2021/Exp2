@@ -22,7 +22,7 @@ class Tester(object):
         self.lib = ctypes.cdll.LoadLibrary(base_file)
         self.lib.testHead.argtypes = [ctypes.c_void_p, ctypes.c_int64, ctypes.c_int64]
         self.lib.testTail.argtypes = [ctypes.c_void_p, ctypes.c_int64, ctypes.c_int64]
-        self.lib.getHit5Cpp.argtypes = [ctypes.c_void_p, ctypes.c_int64, ctypes.c_int64]
+        self.lib.getHitXCpp.argtypes = [ctypes.c_int64, ctypes.c_void_p, ctypes.c_int64, ctypes.c_int64]
         self.lib.test_link_prediction.argtypes = [ctypes.c_int64]
 
         self.lib.getTestLinkMRR.argtypes = [ctypes.c_int64]
@@ -126,7 +126,7 @@ class Tester(object):
             #     print(scr, end="")
             # print("")
 
-    def getHit5Cpp(self, type_constrain = False):
+    def getHitXCpp(self, x, type_constrain = False):
         self.lib.initTest()
         self.data_loader.set_sampling_mode('link')
         if type_constrain:
@@ -136,7 +136,7 @@ class Tester(object):
         training_range = tqdm(self.data_loader)
         for index, [data_head, data_tail] in enumerate(training_range):
             score = self.test_one_step(data_tail)
-            self.lib.getHit5Cpp(score.__array_interface__["data"][0], index, type_constrain)
+            self.lib.getHitXCpp(x, score.__array_interface__["data"][0], index, type_constrain)
 
     def get_best_threshlod(self, score, ans):
         res = np.concatenate([ans.reshape(-1,1), score.reshape(-1,1)], axis = -1)

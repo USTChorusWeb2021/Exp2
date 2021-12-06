@@ -1,0 +1,22 @@
+aiacc@DESKTOP-AIACC:~/Exp2/OpenKE-OpenKE-PyTorch$ python3 -u ./train_transe_FB15K237.py
+Input Files Path : ./benchmarks/FB15K237/
+The toolkit is importing datasets.
+The total of relations is 237.
+The total of entities is 14541.
+The total of train triples is 289649.
+Input Files Path : ./benchmarks/FB15K237/
+The total of test triples is 20466.
+The total of valid triples is 1.
+Finish initializing...
+Epoch 9 | loss: 7.850868: 100%|████████████████████████████████████████████████████| 10/10 [53:59<00:00, 324.00s/it] 1100%|█████████████████████████████████████████████████████████████████████████| 20466/20466 [09:20<00:00, 36.52it/s]
+no type constraint results:
+metric:                  MRR             MR              hit@10          hit@3           hit@1
+l(raw):                  0.083765        704.068054      0.193394        0.082576        0.031125
+r(raw):                  0.235314        254.841400      0.425779        0.263706        0.139255
+averaged(raw):           0.159539        479.454712      0.309587        0.173141        0.085190
+
+l(filter):               0.158517        473.028229      0.306704        0.180104        0.082869
+r(filter):               0.340872        232.320038      0.546467        0.397293        0.229991
+averaged(filter):        0.249694        352.674133      0.426586        0.288698        0.156430
+0.426586
+0.4265855550765991

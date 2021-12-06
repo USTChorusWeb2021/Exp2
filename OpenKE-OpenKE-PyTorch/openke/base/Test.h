@@ -207,21 +207,23 @@ void testTail(REAL *con, INT lastTail, bool type_constrain = false) {
 }
 
 extern "C"
-void getHit5Cpp(REAL *con, INT lastTail, bool type_constrain = false) {
+void getHitXCpp(long x, REAL *con, INT lastTail, bool type_constrain = false) {
     INT h = testList[lastTail].h;
     INT t = testList[lastTail].t;
     INT r = testList[lastTail].r;
     INT lef, rig;
-    if (type_constrain) {
-        lef = tail_lef[r];
-        rig = tail_rig[r];
-    }
-    REAL minimal = con[t];
-    INT r_s = 0;
-    INT r_filter_s = 0;
-    INT r_s_constrain = 0;
-    INT r_filter_s_constrain = 0;
-
+    
+    // if (type_constrain) {
+    //     lef = tail_lef[r];
+    //     rig = tail_rig[r];
+    // }
+    // REAL minimal = con[t];
+    // INT r_s = 0;
+    // INT r_filter_s = 0;
+    // INT r_s_constrain = 0;
+    // INT r_filter_s_constrain = 0;
+    
+   
     // std::priority_queue<PredictResult> pq;
     // std::vector<PredictResult> allResults;
     // allResults.reserve(16384);
@@ -230,30 +232,23 @@ void getHit5Cpp(REAL *con, INT lastTail, bool type_constrain = false) {
 
     for (INT j = 0; j < entityTotal; j++) {
         REAL value = con[j];
-        if (value < minimal) {
-            r_s += 1;
-            if (not _find(h, j, r))
-                r_filter_s += 1;
-        }
+        // if (value < minimal) {
+        //     r_s += 1;
+        //     if (not _find(h, j, r))
+        //         r_filter_s += 1;
+        // }
 
-        // if (not _find(h, j, r)) {
+        if (not _find(h, j, r)) {
             // pq.push(PredictResult{ value, int(j) });
             // if (pq.size() > 5) pq.pop();
             allResults[subscript++] = {value, int(j)};
-        // }
+        }
     }
 
     std::sort(allResults.begin(), allResults.begin() + subscript);
 
-    PredictResult top5[5];
-    for (int i = 0; i < 5; ++i)
-    {
-        // top5[4 - i] = pq.top();
-        // pq.pop();
-    }
-
-    std::cout << lastTail << '\t';
-    for (int i = 0; i < 5; ++i)
+    std::cout << lastTail << '\t' << h << ' ' << r << '\t';
+    for (int i = 0; i < x; ++i)
     {
         // std::cout << top5[i].id << ' ' << top5[i].score << ' ';
         std::cout << allResults[i].id << ' ' << allResults[i].score << ' ';
@@ -261,31 +256,31 @@ void getHit5Cpp(REAL *con, INT lastTail, bool type_constrain = false) {
 
     std::cout << '\n';
 
-    if (r_filter_s < 5) r_filter_tot += 1;
-    if (r_s < 5) r_tot += 1;
-    if (r_filter_s < 3) r3_filter_tot += 1;
-    if (r_s < 3) r3_tot += 1;
-    if (r_filter_s < 1) r1_filter_tot += 1;
-    if (r_s < 1) r1_tot += 1;
+    // if (r_filter_s < x) r_filter_tot += 1;
+    // if (r_s < x) r_tot += 1;
+    // if (r_filter_s < 3) r3_filter_tot += 1;
+    // if (r_s < 3) r3_tot += 1;
+    // if (r_filter_s < 1) r1_filter_tot += 1;
+    // if (r_s < 1) r1_tot += 1;
 
-    r_filter_rank += (1+r_filter_s);
-    r_rank += (1+r_s);
-    r_filter_reci_rank += 1.0/(1+r_filter_s);
-    r_reci_rank += 1.0/(1+r_s);
+    // r_filter_rank += (1+r_filter_s);
+    // r_rank += (1+r_s);
+    // r_filter_reci_rank += 1.0/(1+r_filter_s);
+    // r_reci_rank += 1.0/(1+r_s);
     
-    if (type_constrain) {
-        if (r_filter_s_constrain < 5) r_filter_tot_constrain += 1;
-        if (r_s_constrain < 5) r_tot_constrain += 1;
-        if (r_filter_s_constrain < 3) r3_filter_tot_constrain += 1;
-        if (r_s_constrain < 3) r3_tot_constrain += 1;
-        if (r_filter_s_constrain < 1) r1_filter_tot_constrain += 1;
-        if (r_s_constrain < 1) r1_tot_constrain += 1;
+    // if (type_constrain) {
+    //     if (r_filter_s_constrain < 5) r_filter_tot_constrain += 1;
+    //     if (r_s_constrain < 5) r_tot_constrain += 1;
+    //     if (r_filter_s_constrain < 3) r3_filter_tot_constrain += 1;
+    //     if (r_s_constrain < 3) r3_tot_constrain += 1;
+    //     if (r_filter_s_constrain < 1) r1_filter_tot_constrain += 1;
+    //     if (r_s_constrain < 1) r1_tot_constrain += 1;
 
-        r_filter_rank_constrain += (1+r_filter_s_constrain);
-        r_rank_constrain += (1+r_s_constrain);
-        r_filter_reci_rank_constrain += 1.0/(1+r_filter_s_constrain);
-        r_reci_rank_constrain += 1.0/(1+r_s_constrain);
-    }
+    //     r_filter_rank_constrain += (1+r_filter_s_constrain);
+    //     r_rank_constrain += (1+r_s_constrain);
+    //     r_filter_reci_rank_constrain += 1.0/(1+r_filter_s_constrain);
+    //     r_reci_rank_constrain += 1.0/(1+r_s_constrain);
+    // }
 }
 
 extern "C"
