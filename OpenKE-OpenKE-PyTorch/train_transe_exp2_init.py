@@ -45,5 +45,5 @@ model = NegativeSampling(
 # test the model
 transe.load_checkpoint('./train/round0/transe-0.ckpt')
 tester = Tester(model = transe, data_loader = test_dataloader, use_gpu = False)
-tester.run_link_prediction(type_constrain = False)
-# tester.getHitXCpp(5)
+# tester.run_link_prediction(type_constrain = False)
+tester.getHitXCpp(5)

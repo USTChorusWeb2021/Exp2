@@ -238,7 +238,7 @@ void getHitXCpp(long x, REAL *con, INT lastTail, bool type_constrain = false) {
         //         r_filter_s += 1;
         // }
 
-        if (/* not _find(h, j, r) */ true) {
+        if (not _find(h, j, r)) {
             // pq.push(PredictResult{ value, int(j) });
             // if (pq.size() > 5) pq.pop();
             allResults[subscript++] = {value, int(j)};
@@ -351,7 +351,7 @@ void test_link_prediction(bool type_constrain = false) {
 
     printf("no type constraint results:\n");
     
-    printf("metric:\t\t\t MRR \t\t MR \t\t hit@10 \t hit@3  \t hit@1 \n");
+    printf("metric:\t\t\t MRR \t\t MR \t\t hit@5 \t hit@3  \t hit@1 \n");
     printf("l(raw):\t\t\t %f \t %f \t %f \t %f \t %f \n", l_reci_rank, l_rank, l_tot, l3_tot, l1_tot);
     printf("r(raw):\t\t\t %f \t %f \t %f \t %f \t %f \n", r_reci_rank, r_rank, r_tot, r3_tot, r1_tot);
     printf("averaged(raw):\t\t %f \t %f \t %f \t %f \t %f \n",
