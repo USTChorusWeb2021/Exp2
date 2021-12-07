@@ -114,8 +114,8 @@ void testHead(REAL *con, INT lastHead, bool type_constrain = false) {
         }
     }
 
-    if (l_filter_s < 10) l_filter_tot += 1;
-    if (l_s < 10) l_tot += 1;
+    if (l_filter_s < 5) l_filter_tot += 1;
+    if (l_s < 5) l_tot += 1;
     if (l_filter_s < 3) l3_filter_tot += 1;
     if (l_s < 3) l3_tot += 1;
     if (l_filter_s < 1) l1_filter_tot += 1;
@@ -127,8 +127,8 @@ void testHead(REAL *con, INT lastHead, bool type_constrain = false) {
     l_reci_rank += 1.0/(l_s+1);
 
     if (type_constrain) {
-        if (l_filter_s_constrain < 10) l_filter_tot_constrain += 1;
-        if (l_s_constrain < 10) l_tot_constrain += 1;
+        if (l_filter_s_constrain < 5) l_filter_tot_constrain += 1;
+        if (l_s_constrain < 5) l_tot_constrain += 1;
         if (l_filter_s_constrain < 3) l3_filter_tot_constrain += 1;
         if (l_s_constrain < 3) l3_tot_constrain += 1;
         if (l_filter_s_constrain < 1) l1_filter_tot_constrain += 1;
@@ -179,8 +179,8 @@ void testTail(REAL *con, INT lastTail, bool type_constrain = false) {
         
     }
 
-    if (r_filter_s < 10) r_filter_tot += 1;
-    if (r_s < 10) r_tot += 1;
+    if (r_filter_s < 5) r_filter_tot += 1;
+    if (r_s < 5) r_tot += 1;
     if (r_filter_s < 3) r3_filter_tot += 1;
     if (r_s < 3) r3_tot += 1;
     if (r_filter_s < 1) r1_filter_tot += 1;
@@ -192,8 +192,8 @@ void testTail(REAL *con, INT lastTail, bool type_constrain = false) {
     r_reci_rank += 1.0/(1+r_s);
     
     if (type_constrain) {
-        if (r_filter_s_constrain < 10) r_filter_tot_constrain += 1;
-        if (r_s_constrain < 10) r_tot_constrain += 1;
+        if (r_filter_s_constrain < 5) r_filter_tot_constrain += 1;
+        if (r_s_constrain < 5) r_tot_constrain += 1;
         if (r_filter_s_constrain < 3) r3_filter_tot_constrain += 1;
         if (r_s_constrain < 3) r3_tot_constrain += 1;
         if (r_filter_s_constrain < 1) r1_filter_tot_constrain += 1;
@@ -238,7 +238,7 @@ void getHitXCpp(long x, REAL *con, INT lastTail, bool type_constrain = false) {
         //         r_filter_s += 1;
         // }
 
-        if (not _find(h, j, r)) {
+        if (/* not _find(h, j, r) */ true) {
             // pq.push(PredictResult{ value, int(j) });
             // if (pq.size() > 5) pq.pop();
             allResults[subscript++] = {value, int(j)};
@@ -304,8 +304,8 @@ void testRel(REAL *con) {
         }
     }
 
-    if (rel_filter_s < 10) rel_filter_tot += 1;
-    if (rel_s < 10) rel_tot += 1;
+    if (rel_filter_s < 5) rel_filter_tot += 1;
+    if (rel_s < 5) rel_tot += 1;
     if (rel_filter_s < 3) rel3_filter_tot += 1;
     if (rel_s < 3) rel3_tot += 1;
     if (rel_filter_s < 1) rel1_filter_tot += 1;

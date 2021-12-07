@@ -8,7 +8,7 @@ import os
 
 # dataloader for training
 train_dataloader = TrainDataLoader(
-	in_path = "../dataset/round0/", 
+	in_path = "./train/round0/", 
 	nbatches = 100,
 	threads = 8, 
 	sampling_mode = "normal", 
@@ -18,7 +18,7 @@ train_dataloader = TrainDataLoader(
 	neg_rel = 0)
 
 # dataloader for test
-test_dataloader = TestDataLoader("../dataset/round0/", "link")
+test_dataloader = TestDataLoader("./train/round0/", "link")
 
 # define the model
 transe = TransE(
@@ -38,12 +38,12 @@ model = NegativeSampling(
 )
 
 # train the model
-trainer = Trainer(model = model, data_loader = train_dataloader, train_times = 10, alpha = 1.0, use_gpu = False)
-trainer.run()
-transe.save_checkpoint('../dataset/round0/transe-0.ckpt')
+# trainer = Trainer(model = model, data_loader = train_dataloader, train_times = 10, alpha = 1.0, use_gpu = False)
+# trainer.run()
+# transe.save_checkpoint('./train/round0/transe-0.ckpt')
 
 # test the model
-transe.load_checkpoint('../dataset/round0/transe-0.ckpt')
+transe.load_checkpoint('./train/round0/transe-0.ckpt')
 tester = Tester(model = transe, data_loader = test_dataloader, use_gpu = False)
-# tester.run_link_prediction(type_constrain = False)
-tester.getHitXCpp(5)
+tester.run_link_prediction(type_constrain = False)
+# tester.getHitXCpp(5)

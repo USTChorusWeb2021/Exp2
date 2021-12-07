@@ -164,15 +164,15 @@ INT corrupt_rel(INT id, INT h, INT t, INT r, bool p = false, bool filter_flag = 
 
 
 bool _find(INT h, INT t, INT r) {
-    INT lef = testTotal;
-    INT rig = testTotal + trainTotal - 1;
+    INT lef = 0;
+    INT rig = trainTotal - 1;
     INT mid;
     while (lef + 1 < rig) {
         INT mid = (lef + rig) >> 1;
-        if ((tripleList[mid]. h < h) || (tripleList[mid]. h == h && tripleList[mid]. r < r) || (tripleList[mid]. h == h && tripleList[mid]. r == r && tripleList[mid]. t < t)) lef = mid; else rig = mid;
+        if ((trainList[mid]. h < h) || (trainList[mid]. h == h && trainList[mid]. r < r) || (trainList[mid]. h == h && trainList[mid]. r == r && trainList[mid]. t < t)) lef = mid; else rig = mid;
     }
-    if (tripleList[lef].h == h && tripleList[lef].r == r && tripleList[lef].t == t) return true;
-    if (tripleList[rig].h == h && tripleList[rig].r == r && tripleList[rig].t == t) return true;
+    if (trainList[lef].h == h && trainList[lef].r == r && trainList[lef].t == t) return true;
+    if (trainList[rig].h == h && trainList[rig].r == r && trainList[rig].t == t) return true;
     return false;
 }
 
