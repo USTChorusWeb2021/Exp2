@@ -1,0 +1,4 @@
+transE round0
+    2021-12-07 16:36:15	176_1638866175_hit5-release.txt	0.199697 0.438972
+    final result: 0.438972 0.199697 
+    local result: 0.485473 0.183320
