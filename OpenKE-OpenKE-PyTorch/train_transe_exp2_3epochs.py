@@ -8,7 +8,7 @@ import os
 
 # dataloader for training
 train_dataloader = TrainDataLoader(
-	in_path = "./train/100epochs/", 
+	in_path = "./train/3epochs/", 
 	nbatches = 100,
 	threads = 8, 
 	sampling_mode = "normal", 
@@ -18,13 +18,13 @@ train_dataloader = TrainDataLoader(
 	neg_rel = 0)
 
 # dataloader for test
-test_dataloader = TestDataLoader("./train/100epochs/", "link")
+test_dataloader = TestDataLoader("./train/3epochs/", "link")
 
 # define the model
 transe = TransE(
 	ent_tot = train_dataloader.get_ent_tot(),
 	rel_tot = train_dataloader.get_rel_tot(),
-	dim = 200, 
+	dim = 64, 
 	p_norm = 1, 
 	norm_flag = True)
 
@@ -38,12 +38,12 @@ model = NegativeSampling(
 )
 
 # train the model
-# trainer = Trainer(model = model, data_loader = train_dataloader, train_times = 100, alpha = 1.0, use_gpu = False)
+# trainer = Trainer(model = model, data_loader = train_dataloader, train_times = 1, alpha = 1.0, use_gpu = False)
 # trainer.run()
-# transe.save_checkpoint('./train/100epochs/transe-100epochs.ckpt')
+# transe.save_checkpoint('./train/3epochs/transe.ckpt')
 
 # test the model
-transe.load_checkpoint('./train/100epochs/transe-100epochs.ckpt')
+transe.load_checkpoint('./train/3epochs/transe.ckpt')
 tester = Tester(model = transe, data_loader = test_dataloader, use_gpu = False)
 # tester.run_link_prediction(type_constrain = False)
 tester.getHitXCpp(5)

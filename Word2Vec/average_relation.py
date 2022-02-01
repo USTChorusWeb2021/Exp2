@@ -8,6 +8,8 @@ import numba
 from numpy import core, double
 from numpy.lib.function_base import average
 
+DIM = 100
+
 entityFile = open("entity_vectors.json", "r")
 tripletsFile = open("div0-9-sorted_by_relation.txt", "r")
 
@@ -28,7 +30,7 @@ tripletsTyped: List[List[int]] = triplets
 def computeAverageRelation(triplets: List[List[int]], entities: List[numpy.ndarray]):
     currentR: int = 0
     currentRCount: int = 0
-    average: numpy.ndarray = numpy.array([0 for i in range(0, 100)], numpy.float64)
+    average: numpy.ndarray = numpy.array([0 for i in range(0, DIM)], numpy.float64)
     ret: List[numpy.ndarray] = []
 
     for index, triplet in enumerate(triplets):
@@ -37,17 +39,13 @@ def computeAverageRelation(triplets: List[List[int]], entities: List[numpy.ndarr
         r: int = triplet[2]
 
         if r != currentR or index == len(triplets) - 1:
-            if currentR == 10:
-                print(average.tolist())
             average /= currentRCount
             currentRCount = 0
             ret.append(average)
-            average = numpy.array([0 for i in range(0, 100)], numpy.float64)
+            average = numpy.array([0 for i in range(0, DIM)], numpy.float64)
             print("Relation", currentR)
             currentR = r
         else:
-            if currentR == 10:
-                print(average.tolist())
             average += entities[t] - entities[h]
             currentRCount += 1
 
